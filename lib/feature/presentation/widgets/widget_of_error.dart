@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ReservationErrorWidget extends StatelessWidget {
-  final String message;
+class MessageErrorWidget extends StatelessWidget {
+  final String msg;
 
-  ReservationErrorWidget({required this.message});
+  MessageErrorWidget({required this.msg});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class ReservationErrorWidget extends StatelessWidget {
       child: Center(
         child: SingleChildScrollView(
           child: Text(
-            message,
+            msg,
             style: TextStyle(
               fontSize: 25,
             ),

@@ -8,9 +8,9 @@ import 'package:squadiotask/feature/data/models/popuar_model.dart';
 import '../../../core/shared/constant.dart';
 
 abstract class PopularLocalDataSource {
-  Future<List<PopularPeopleModel>> getCashedPopularData();
+  Future<List<ResultsDataModel>> getCashedPopularData();
 
-  Future<Unit> CashedPopularData(List<PopularPeopleModel> popularModels);
+  Future<Unit> CashedPopularData(List<ResultsDataModel> popularModels);
 }
 
 class PopularLocalDataSrcImp extends PopularLocalDataSource {
@@ -19,7 +19,7 @@ class PopularLocalDataSrcImp extends PopularLocalDataSource {
   PopularLocalDataSrcImp({required this.sharedPreferences});
 
   @override
-  Future<Unit> CashedPopularData(List<PopularPeopleModel> popularModels) {
+  Future<Unit> CashedPopularData(List<ResultsDataModel> popularModels) {
     List popularModelsToJson = popularModels
         .map<Map<String, dynamic>>((popularModels) => popularModels.toJson())
         .toList();
@@ -29,13 +29,13 @@ class PopularLocalDataSrcImp extends PopularLocalDataSource {
   }
 
   @override
-  Future<List<PopularPeopleModel>> getCashedPopularData() {
+  Future<List<ResultsDataModel>> getCashedPopularData() {
     final jsonString = sharedPreferences.getString(CommonUse.CASHEDNETWORK);
     if (jsonString != null) {
       List decodedJsonData = json.decode(jsonString);
-      List<PopularPeopleModel> jsonToPopularModels = decodedJsonData
-          .map<PopularPeopleModel>((jsonPopularModel) =>
-              PopularPeopleModel.fromJson(jsonPopularModel))
+      List<ResultsDataModel> jsonToPopularModels = decodedJsonData
+          .map<ResultsDataModel>((jsonPopularModel) =>
+          ResultsDataModel.fromJson(jsonPopularModel))
           .toList();
       return Future.value(jsonToPopularModels);
     } else {

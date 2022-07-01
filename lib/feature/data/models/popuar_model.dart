@@ -98,11 +98,11 @@ class KnownForDataModel {
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
+  dynamic voteAverage;
   int? voteCount;
   String? firstAirDate;
   String? name;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
   String? originalName;
 
   KnownForDataModel(
@@ -142,7 +142,7 @@ class KnownForDataModel {
     voteCount = json['vote_count'];
     firstAirDate = json['first_air_date'];
     name = json['name'];
-    originCountry = json['origin_country'].cast<String>();
+    originCountry = json['origin_country'];
     originalName = json['original_name'];
   }
 

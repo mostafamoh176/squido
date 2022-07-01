@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:squadiotask/core/widgets/loadingWidget.dart';
-import 'package:squadiotask/feature/presentation/widgets/widget_of_gridView.dart';
+import 'package:squadiotask/feature/presentation/people_business_logic/popular_people_bloc.dart';
 
-import '../people_business_logic/popular_people_bloc.dart';
+import '../../../core/widgets/loadingWidget.dart';
+import '../widgets/widget_of_details.dart';
 import '../widgets/widget_of_error.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class DetailsScreen extends StatelessWidget {
+  int index;
 
- Widget _bodyMainScreen() {
+  DetailsScreen({required this.index});
+
+  _bodyWidget() {
     return Padding(
       padding: EdgeInsets.all(10),
       child: BlocBuilder<PopularPeopleBloc, PopularPeopleState>(
@@ -18,7 +20,10 @@ class MainScreen extends StatelessWidget {
             return LoadingWidget();
           }
           if (state is SuccessPeoplePopularState) {
-            return GridViewWidget(popularPeople: state.popularData);
+            return DetailsWidget(
+              popularPeople: state.popularData,
+              index: index,
+            );
           }
           if (state is ErrorPeoplePopularState) {
             return MessageErrorWidget(
@@ -36,11 +41,11 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         elevation: 0,
-        title: Text("Popular People"),
+        backgroundColor: Colors.black,
+        toolbarHeight: 0,
       ),
-      body: _bodyMainScreen(),
+      body: _bodyWidget(),
     );
   }
 }

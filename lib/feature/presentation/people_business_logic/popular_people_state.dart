@@ -16,7 +16,7 @@ class LoadingPeoplePopularState extends PopularPeopleState {
   List<Object?> get props => throw UnimplementedError();
 }
 class SuccessPeoplePopularState extends PopularPeopleState {
-  final List<PopularPeople> popularData;
+  final List<ResultsDataModel> popularData;
 
   SuccessPeoplePopularState(this.popularData);
 

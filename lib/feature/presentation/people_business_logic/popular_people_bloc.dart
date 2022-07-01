@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 import '../../../core/shared/constant.dart';
+import '../../data/models/popuar_model.dart';
 import '../../domain/useCases/get_all_popular_people.dart';
 
 part 'popular_people_event.dart';
@@ -32,7 +33,7 @@ class PopularPeopleBloc extends Bloc<PopularPeopleEvent, PopularPeopleState> {
   }
 
   PopularPeopleState _mapFailureOrPeopleToState(
-      Either<Failures, List<PopularPeople>> either) {
+      Either<Failures, List<ResultsDataModel>> either) {
     return either.fold(
         (failure) => ErrorPeoplePopularState(msg: _failureToMessage(failure)),
         (popular) => SuccessPeoplePopularState(popular));
